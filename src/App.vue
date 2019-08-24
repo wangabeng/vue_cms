@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <img alt="Vue logo" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <router-view></router-view>
+    <router-link to="/index">Go to index</router-link>
+    <br>
+    <router-link to="/usercenter">Go to usercenter</router-link>
+    <br>
+    <router-link to="/helloworld">Go to helloworld</router-link>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld/HelloWorld.vue'
+import Index from './components/Index/Index.vue'
 
 export default {
   name: 'app',

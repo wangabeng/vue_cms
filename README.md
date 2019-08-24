@@ -30,7 +30,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # 文件夹结构
 静态文件夹
-···
+```
 src-------common（存放资源文件 fonts image js sass）
       |
       |
@@ -44,4 +44,5 @@ src-------common（存放资源文件 fonts image js sass）
       |
       -----router (路由文件夹)-index.js
       |
-      -----store (vue-x文件夹)     
+      -----store (vue-x文件夹)    
+``` 

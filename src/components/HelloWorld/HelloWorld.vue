@@ -46,9 +46,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "common/sass/variable.scss";
 .hello {
   h1 {
-    color: red;
+    color: $color-sub-red;
   }
 }
 </style>
