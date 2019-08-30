@@ -8,6 +8,8 @@ import $ from 'jquery'
 import "bootstrap"
 import "bootstrap/dist/css/bootstrap.css"
 
+import 'common/sass/index.scss'
+
 
 Vue.config.productionTip = false
 

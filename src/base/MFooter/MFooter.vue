@@ -1,12 +1,12 @@
 <template>
-  <div class="not-found">
-    未找到
+  <div class="m-footer">
+  footer
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Index',
+  name: 'MFooter',
   props: {
     msg: String
   },
@@ -18,8 +18,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "common/sass/variable.scss";
-.hello {
-  h1 {
-  }
+.m-footer {
+  height: 2.085rem;
+  background-color: red;
+  margin-top: -2.085rem;
 }
 </style>

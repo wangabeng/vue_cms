@@ -13,7 +13,7 @@ Vue.use(Router)
 
 const router = new Router({
   // 如果开启history模式 会出现如果二级路由找不到 无法跳转到404页面的错误 此时需要后端配合 重定向到index.html页
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -42,10 +42,7 @@ const router = new Router({
       path: '*', //全不匹配的情况下，返回404，路由按顺序从上到下，依次匹配。最后一个*能匹配全部，
       component: NotFound,
     },
-    {
-      path: '*/*', //全不匹配的情况下，返回404，路由按顺序从上到下，依次匹配。最后一个*能匹配全部，
-      component: NotFound,
-    },
+
   ],
 
 })

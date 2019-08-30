@@ -21,7 +21,6 @@ export default {
 @import "common/sass/variable.scss";
 .hello {
   h1 {
-    color: $color-sub-red;
   }
 }
 </style>
