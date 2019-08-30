@@ -85,6 +85,7 @@ export default {
 
   .content-wrapper {
     min-height: 100%;
+    background-color: #f8f9fc;
 
     .content-main {
       margin: 0 auto;

@@ -1,7 +1,11 @@
 <template>
-  <div class="m-footer">
-  footer
-  </div>
+  <footer class="sticky-footer container-fluid bg-white align-items-center justify-content-center m-footer">
+    <div class="row">
+      <div class="copyright text-center my-auto">
+        <span>Copyright © Your Website 2019</span>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -19,8 +23,8 @@ export default {
 <style scoped lang="scss">
 @import "common/sass/variable.scss";
 .m-footer {
-  height: 2.085rem;
-  background-color: red;
-  margin-top: -2.085rem;
+  height: 4rem;
+  margin-top: -4rem;
+  display: flex;
 }
 </style>

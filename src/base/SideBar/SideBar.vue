@@ -127,7 +127,7 @@ export default {
   bottom: 0;
   left: 0;
   width: 250px;
-  min-height: 100VH;
+  min-height: 100%;
   z-index: 100;
   // box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
   background-color: rgb(33, 42, 57);
