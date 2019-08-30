@@ -23,7 +23,6 @@ export default {
 @import "common/sass/variable.scss";
 @import "common/sass/index.scss";
 .m-index {
-  color: $color-sub-red;
   h1 {
     color: red;
   }

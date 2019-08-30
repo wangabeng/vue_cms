@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Index from '@/components/Index/Index'
 import UserCenter from '@/components/UserCenter/UserCenter'
+import Register from '@/components/Register/Register'
 import HelloWorld from '@/components/HelloWorld/HelloWorld' // @别名 src
 import NotFound from '@/components/NotFound/NotFound'
 // import ItemCenter from '@/components/item-center/ItemCenter'
@@ -28,6 +29,11 @@ const router = new Router({
       path: '/helloworld',
       name: 'HelloWorld',
       component: HelloWorld,
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register,
     },
     {
       path: '/usercenter',
