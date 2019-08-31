@@ -4,8 +4,11 @@ import Router from 'vue-router'
 import Index from '@/components/Index/Index'
 import UserCenter from '@/components/UserCenter/UserCenter'
 import Register from '@/components/Register/Register'
+import Login from '@/components/Login/Login'
 import HelloWorld from '@/components/HelloWorld/HelloWorld' // @别名 src
 import NotFound from '@/components/NotFound/NotFound'
+import Editor from '@/components/Editor/Editor'
+import Error from '@/components/Error/Error'
 // import ItemCenter from '@/components/item-center/ItemCenter'
 // import Cart from '@/components/cart/Cart'
 // import Login from '@/components/login/Login'
@@ -29,6 +32,14 @@ const router = new Router({
           path: "helloworld",
           component: HelloWorld          
         },
+        {
+          path: "editor",
+          component: Editor          
+        },
+        {
+          path: "error",
+          component: Error          
+        },
       ],
       // 设置在当前一级路由为index的时的 二级路由
       redirect:'/index/helloworld'
@@ -37,6 +48,11 @@ const router = new Router({
       path: '/register',
       name: 'Register',
       component: Register,
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
     },
     /*{
       path: '/usercenter',

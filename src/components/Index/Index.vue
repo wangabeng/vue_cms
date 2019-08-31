@@ -8,7 +8,7 @@
     <MHeader></MHeader>
     <!-- header end -->
 
-    <div class="content-wrapper">
+    <div class="content-container">
       <div class="content-main">
           <!-- 主内容 -->
           <div class="content-inner">
@@ -50,7 +50,7 @@ export default {
   padding-top: 75px;
   padding-left: 250px;
 
-  .content-wrapper {
+  .content-container {
     min-height: 100%;
     padding-bottom: 5rem;
     box-sizing: border-box;

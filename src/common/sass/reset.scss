@@ -11,6 +11,7 @@ body {
   color: #858796;
   text-align: left;
   background-color: #fff;
+  min-width: 768px;
 }
 
 /* 去除bootstrap按钮组件黄边框 */
@@ -23,9 +24,3 @@ button:active.focus{
     outline: none;
 }
 
-/* vue路由 a激活状态样式 */
-.router-link-exact-active, .router-link-active {
-  text-decoration: none;
-  color: #fff!important;
-  font-weight: 500!important;
-}

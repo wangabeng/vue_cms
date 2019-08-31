@@ -20,9 +20,9 @@
           <a class="nav-link active" href="#"><i class="fa fa-wpexplorer type-icon" aria-hidden="true"></i><span>Active</span><i class="fa fa-angle-right arrow-icon" aria-hidden="true"></i></a>
           <!-- Submenu -->
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
+            <router-link to="/index/editor" tag="li" class='nav-item'>
+              <a href="javascript:;">富文本</a>
+            </router-link>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
@@ -48,9 +48,9 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
-            <li class="nav-item">
-              <router-link to="/index/helloworld">Go to HelloWorld</router-link>
-            </li>
+            <router-link to="/index/helloworld" tag="li" class='nav-item'>
+              <a href="#">Go to HelloWorld</a>
+            </router-link>
             <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
@@ -163,13 +163,37 @@ export default {
           background: #1d2531;
           >li {
             width: 100%;
+            height: 3rem;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            /* vue路由 a激活状态样式 */
+            &.router-link-exact-active, &.router-link-active {
+              a {
+                text-decoration: none;
+                color: #fff!important;
+                font-weight: 500!important;                
+              }
+              &:after {
+                content: "";
+                position: absolute;
+                width: 5px;
+                height: 100%;
+                right: 0;
+                top: 0;
+                background-color: #4c84ff;
+              }
+            }
+
             >a {
               width: 100%;
               color: #b7c0cd;
               font-size: 1rem;
-              padding: 0.625rem 1.25rem 0.625rem 1.5rem;
+              padding: 0 1.25rem 0 1.5rem;
               box-sizing: border-box;
               text-align: left;
+
             }
           }
         }
