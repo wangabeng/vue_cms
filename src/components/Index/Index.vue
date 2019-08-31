@@ -1,30 +1,68 @@
 <template>
-  <div class="m-index">
-    index
-    <i class="fa fa-address-book-o" aria-hidden="true"></i>
-    <h1>index</h1>
+  <div id="m-index">
+    <!-- 侧边栏 -->
+    <SideBar></SideBar>
+    <!-- 侧边栏 end -->
+    
+    <!-- header -->
+    <MHeader></MHeader>
+    <!-- header end -->
+
+    <div class="content-wrapper">
+      <div class="content-main">
+          <!-- 主内容 -->
+          <div class="content-inner">
+            <router-view></router-view>
+          </div>
+          <!-- 主内容 end -->
+      </div>
+    </div>
+    <!-- footer -->
+    <MFooter></MFooter>
+    <!-- footer end -->
   </div>
 </template>
 
 <script>
+import HelloWorld from 'components/HelloWorld/HelloWorld.vue'
+import Index from 'components/Index/Index.vue'
+import SideBar from 'base/SideBar/SideBar.vue'
+import MHeader from 'base/MHeader/MHeader.vue'
+import MFooter from 'base/MFooter/MFooter.vue'
+
 export default {
   name: 'Index',
-  props: {
-    msg: String
-  },
-  mounted () {
-    console.log($(".m-index").html());
+  components: {
+    SideBar,
+    MHeader,
+    MFooter,
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "common/sass/variable.scss";
-@import "common/sass/index.scss";
-.m-index {
-  h1 {
-    color: red;
+@import "common/sass/reset.scss";
+
+#m-index {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 75px;
+  padding-left: 250px;
+
+  .content-wrapper {
+    min-height: 100%;
+    padding-bottom: 5rem;
+    box-sizing: border-box;
+    background-color: #f8f9fc;
+
+    .content-main {
+      margin: 0 auto;
+      .content-inner {
+
+      }
+    }
+
   }
 }
 </style>

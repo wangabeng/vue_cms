@@ -24,18 +24,21 @@ const router = new Router({
       path: '/index',
       name: 'Index',
       component: Index,
-    },
-    {
-      path: '/helloworld',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      children: [
+        {
+          path: "helloworld",
+          component: HelloWorld          
+        },
+      ],
+      // 设置在当前一级路由为index的时的 二级路由
+      redirect:'/index/helloworld'
     },
     {
       path: '/register',
       name: 'Register',
       component: Register,
     },
-    {
+    /*{
       path: '/usercenter',
       name: 'UserCenter',
       component: UserCenter,
@@ -43,7 +46,7 @@ const router = new Router({
         title: '个人中心',
         requireAuth: true // 在需要登录的路由的meta中添加响应的权限标识
       }
-    },
+    },*/
     {
       path: '*', //全不匹配的情况下，返回404，路由按顺序从上到下，依次匹配。最后一个*能匹配全部，
       component: NotFound,

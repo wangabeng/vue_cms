@@ -49,7 +49,7 @@
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item">
-              <router-link to="/index">Go to index</router-link>
+              <router-link to="/index/helloworld">Go to HelloWorld</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -58,47 +58,6 @@
           <!-- Submenu end -->
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="fa fa-wpexplorer type-icon" aria-hidden="true"></i><span>Active</span><i class="fa fa-angle-right arrow-icon" aria-hidden="true"></i></a>
-          <!-- Submenu -->
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <!-- Submenu end -->
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="fa fa-wpexplorer type-icon" aria-hidden="true"></i><span>Active</span><!-- <i class="fa fa-angle-right arrow-icon" aria-hidden="true"></i> --></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="fa fa-wpexplorer type-icon" aria-hidden="true"></i><span>Active</span><i class="fa fa-angle-right arrow-icon" aria-hidden="true"></i></a>
-          <!-- Submenu -->
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">ActiveActiveActive</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <router-link to="/index">Go to index</router-link>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <!-- Submenu end -->
-        </li>
       </ul>
     </div>
     <!-- menu list -->

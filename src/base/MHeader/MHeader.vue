@@ -1,59 +1,5 @@
 <template>
   <div class="m-header container-fluid">
-    <!-- <div class="header-content container-fluid no-gutter h100">
-      <div class="row align-items-center justify-content-between row-container">
-        search container
-        <div class="input-group col-3 search-container">
-          <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
-          <div class="input-group-prepend">
-            <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search" aria-hidden="true"></i></div>
-          </div>
-        </div>
-    
-        user info
-        <div class="dropdown show user-container">
-          <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true">
-            <img src="./user-pic.jpg" class="user-image" alt="User Image">
-            <span class="ml-3 mr-3">Abdus Salam</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right hide animated--grow-in">
-            User image
-            <li class="dropdown-header">
-              <img src="./user-pic.jpg" class="img-circle" alt="User Image">
-              <div class="d-inline-block">
-                Abdus Salam <small class="pt-1">abdus@gmail.com</small>
-              </div>
-            </li>
-    
-            <li>
-              <a href="profile.html">
-                <i class="mdi mdi-account"></i> My Profile
-              </a>
-            </li>
-            <li>
-              <a href="email-inbox.html">
-                <i class="mdi mdi-email"></i> Message
-              </a>
-            </li>
-            <li>
-              <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
-            </li>
-            <li>
-              <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
-            </li>
-    
-            <li class="dropdown-footer">
-              <a href="signin.html"> <i class="mdi mdi-logout"></i> Log Out </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="clearfix">
-        <span class="float-left">左浮动</span>
-        <span class="float-right">右浮动</span>
-      </div>
-    </div> -->
-
     <nav class="navbar navbar-expand navbar-light bg-white topbar row align-items-center justify-content-start
       row h100 nav-contant
     ">
@@ -64,7 +10,7 @@
       </button>
 
       <!-- Topbar Search -->
-      <form class="d-none d-sm-inline-block form-inline navbar-search col-3 search-container">
+      <form class="d-none d-sm-inline-block form-inline navbar-search col-4 search-container">
         <div class="input-group">
           <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..1111." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
