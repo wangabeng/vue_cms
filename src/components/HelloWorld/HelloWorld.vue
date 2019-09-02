@@ -34,7 +34,7 @@ export default {
     msg: String
   },
   mounted () {
-    console.log($("h1").html() + "hahah");
+    // console.log($("h1").html() + "hahah");
   }
 }
 </script>

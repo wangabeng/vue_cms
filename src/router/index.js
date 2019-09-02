@@ -12,6 +12,7 @@ import Error from '@/components/Error/Error'
 // import ItemCenter from '@/components/item-center/ItemCenter'
 // import Cart from '@/components/cart/Cart'
 // import Login from '@/components/login/Login'
+import store from '@/store/index'
 
 Vue.use(Router)
 
@@ -27,6 +28,10 @@ const router = new Router({
       path: '/index',
       name: 'Index',
       component: Index,
+      meta: {
+        title: '首页',
+        requireAuth: true // 在需要登录的路由的meta中添加响应的权限标识
+      },
       children: [
         {
           path: "helloworld",
@@ -72,16 +77,26 @@ const router = new Router({
 
 })
 
-// router.beforeEach((to, from, next) => {
+// 路由卫生 鉴权 获取和设置用户token及userInfo信息
+router.beforeEach((to, from, next) => {
   /*console.log("路由TO：", to, "路由FROM：", from, "路由Next：", next);
   console.log(router);*/
   // 判断将要跳转的路由是否需要鉴权
-  /*console.log(to.matched.some(record => record.meta.requireAuth));
+  // console.log(to.matched.some(record => record.meta.requireAuth));
   if (to.matched.some(record => record.meta.requireAuth)) {
-    // 判断本地cookie是否包含sessionId字段
-    // 
+    // 从vuex中获取token数据
+    if(!store.getters.token) {
+      // 远程请求token 如果获取到token 存到vux中 并把用户信息存入
+      store.dispatch('setToken', new Date()); 
+      console.log(store.getters.token);
+    } else { // 如果有用户token信息
+      if (!store.getters.userInfo) { // 如果没有用户信息
+        // 获取用户信息并设置用户信息到vuex
+      }
+    }
+
   }
-  next();*/
+  next();
   /*if (to.matched.length === 0) { //匹配前往的路由不存在
     from.name ? next({
       name: from.name
@@ -89,7 +104,7 @@ const router = new Router({
   } else {
     next(); //如果匹配到正确跳转
   }*/
-// })
+})
 
 /*router.afterEach((to, from) => {
   console.log("后置守卫TO：", to, "后置守卫FROM：", from);

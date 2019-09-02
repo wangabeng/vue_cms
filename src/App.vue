@@ -15,13 +15,35 @@ import Index from './components/Index/Index.vue'
 import SideBar from './base/SideBar/SideBar.vue'
 import MHeader from './base/MHeader/MHeader.vue'
 import MFooter from './base/MFooter/MFooter.vue'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'app',
+  data () {
+    return {};
+  },
   components: {
     SideBar,
     MHeader,
     MFooter,
+  },
+  computed: {
+    ...mapGetters([
+      'token',
+      'userInfo'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'setToken',
+      'setUserInfo'
+    ])
+  },
+  mounted () {
+    // 获取token
+    /*this.setToken("lisi");
+    console.log(this.token);
+    console.log(this.userInfo);*/
   }
 }
 </script>

@@ -10,10 +10,15 @@ import "bootstrap/dist/css/bootstrap.css"
 
 import 'common/sass/index.scss'
 
+import store from './store/index'
+
+import {mapActions, mapGetters} from 'vuex'
+
 
 Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
   router,
+  store
 }).$mount('#app')
