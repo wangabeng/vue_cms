@@ -87,14 +87,24 @@ router.beforeEach((to, from, next) => {
     // 从vuex中获取token数据
     if(!store.getters.token) {
       // 远程请求token 如果获取到token 存到vux中 并把用户信息存入
-      store.dispatch('setToken', new Date()); 
-      console.log(store.getters.token);
+      store.dispatch('setToken', Math.random().toFixed(3));
+      store.dispatch('setUserInfo', {
+        'name': 'ben',
+        'age': 18,
+      }); 
+
     } else { // 如果有用户token信息
       if (!store.getters.userInfo) { // 如果没有用户信息
         // 获取用户信息并设置用户信息到vuex
+        store.dispatch('userInfo', {
+          'name': 'ben',
+          'age': 18,
+        }); 
       }
     }
 
+    console.log(store.getters.token);
+    console.log(store.getters.userInfo);
   }
   next();
   /*if (to.matched.length === 0) { //匹配前往的路由不存在

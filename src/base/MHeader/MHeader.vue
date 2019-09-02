@@ -27,7 +27,7 @@
          <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow show">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <span class="mr-3 d-none d-lg-inline ">Valerie Luna</span>
+            <span class="mr-3 d-none d-lg-inline ">{{token}}</span>
             <img class="img-profile rounded-circle ml-2 mr-2" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
           </a>
           <!-- Dropdown - User Information -->
@@ -60,13 +60,30 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex';
+
 export default {
   name: 'MHeader',
+  date () {
+    return {};
+  },
+  computed: {
+    ...mapGetters([
+      'token',
+      'userInfo'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'setToken',
+      'setUserInfo'
+    ])
+  },
   props: {
     msg: String
   },
   mounted () {
-  }
+  },
 }
 </script>
 
