@@ -87,7 +87,7 @@ export default {
   left: 0;
   width: 250px;
   min-height: 100%;
-  z-index: 100;
+  z-index: 10003!important;
   // box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
   background-color: rgb(33, 42, 57);
   overflow: hidden;

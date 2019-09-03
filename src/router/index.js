@@ -87,6 +87,13 @@ router.beforeEach((to, from, next) => {
     // 从vuex中获取token数据
     if(!store.getters.token) {
       // 远程请求token 如果获取到token 存到vux中 并把用户信息存入
+      var valueRandom = Math.random().toFixed(3);
+      if (valueRandom < .5) {
+        // 路由跳转到登录页
+        // console.log('小于.5' +valueRandom);
+        next('/login');
+        return;
+      }
       store.dispatch('setToken', Math.random().toFixed(3));
       store.dispatch('setUserInfo', {
         'name': 'ben',
@@ -103,8 +110,8 @@ router.beforeEach((to, from, next) => {
       }
     }
 
-    console.log(store.getters.token);
-    console.log(store.getters.userInfo);
+    // console.log(store.getters.token);
+    // console.log(store.getters.userInfo);
   }
   next();
   /*if (to.matched.length === 0) { //匹配前往的路由不存在

@@ -96,6 +96,7 @@ export default {
   flex-direction: row;
   align-items: center;
   position: fixed;
+  z-index: 10002!important;
   top: 0;
   left: 0;
   right: 0;

@@ -1,28 +1,52 @@
 <template>
   <div class="m-editor">
     <div ref="editor" style="text-align:left;background-color: #fff;"></div>
-    <p><button class="btn btn-primary btn-lg mt-4" id="btnGenCode" role="button">保存 »</button></p>
+    <p><button class="btn btn-primary btn-lg mt-4" id="btnGenCode" role="button" @click='editorSubmit'>保存 »</button></p>
   </div>
 </template>
 
 <script>
 import E from 'wangeditor'
+import axios from 'axios'
 
 export default {
   name: 'Editor',
+  data () {
+    return {
+      'editorHtml': ''
+    };
+  },
   props: {
     msg: String
   },
+  methods: {
+    editorSubmit () {
+      console.log(this.editorHtml);
+      var _this = this;
+      // 可选地，上面的请求可以这样做
+      axios.get('http://localhost:8080/editor/submit', {
+          params: {
+            content: _this.editorHtml
+          }
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  },
   mounted () {
-    var That = this;
+    var _this = this;
     var editor = new E(this.$refs.editor);
     editor.customConfig = {
       onchange:function(html){
-        That.Content = html;
+        _this.editorHtml = html;
         // 获取html内容
-        console.log(html);
+        // console.log(html);
       },
-      uploadImgServer: 'http://localhost:8080/test', // 上传图片到服务器
+      uploadImgServer: 'http://localhost:8080/editor/upload', // 上传图片到服务器
       uploadFileName : 'file', //后端使用这个字段获取图片信息
       uploadImgMaxLength : 1 , // 限制一次最多上传 1 张图片
     };
