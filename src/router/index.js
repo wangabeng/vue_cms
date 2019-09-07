@@ -35,15 +35,15 @@ const router = new Router({
       children: [
         {
           path: "helloworld",
-          component: HelloWorld          
+          component: HelloWorld
         },
         {
           path: "editor",
-          component: Editor          
+          component: Editor
         },
         {
           path: "error",
-          component: Error          
+          component: Error
         },
       ],
       // 设置在当前一级路由为index的时的 二级路由
@@ -78,11 +78,8 @@ const router = new Router({
 })
 
 // 路由卫生 鉴权 获取和设置用户token及userInfo信息
-router.beforeEach((to, from, next) => {
-  /*console.log("路由TO：", to, "路由FROM：", from, "路由Next：", next);
-  console.log(router);*/
+/*router.beforeEach((to, from, next) => {
   // 判断将要跳转的路由是否需要鉴权
-  // console.log(to.matched.some(record => record.meta.requireAuth));
   if (to.matched.some(record => record.meta.requireAuth)) {
     // 从vuex中获取token数据
     if(!store.getters.token) {
@@ -109,19 +106,9 @@ router.beforeEach((to, from, next) => {
         }); 
       }
     }
-
-    // console.log(store.getters.token);
-    // console.log(store.getters.userInfo);
   }
   next();
-  /*if (to.matched.length === 0) { //匹配前往的路由不存在
-    from.name ? next({
-      name: from.name
-    }) : next('/404'); //判断此跳转路由的来源路由是否存在，存在的情况跳转到来源路由，否则跳转到404页面
-  } else {
-    next(); //如果匹配到正确跳转
-  }*/
-})
+})*/
 
 /*router.afterEach((to, from) => {
   console.log("后置守卫TO：", to, "后置守卫FROM：", from);

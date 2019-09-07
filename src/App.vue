@@ -52,8 +52,8 @@ export default {
 @import "common/sass/reset.scss";
 
 #app {
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
+  // height: 100%;
+  // width: 100%;
+  // box-sizing: border-box;
 }
 </style>
