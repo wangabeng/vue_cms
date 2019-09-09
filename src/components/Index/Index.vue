@@ -59,6 +59,17 @@
           </ul>
         </nav>
       </div>
+
+      <!-- 当前导航 -->
+      <div class="breadcrumb-holder">
+        <!-- nav导航 -->
+        <div class="container-fluid">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Advanced forms</li>
+          </ul>
+        </div>
+      </div>
       
       <!-- 主内容区 -->
       <div class="content-view">
@@ -153,6 +164,12 @@ export default {
 
 <style scoped lang="scss">
 @import "common/sass/reset.scss";
+.breadcrumb-holder {
+  background: #eceeef;
+  a {
+    color: #2b90d9;
+  }
+}
 /* 主内容区 */
 .page-main {
   min-height: 100VH;

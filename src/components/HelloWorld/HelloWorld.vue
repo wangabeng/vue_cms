@@ -1,29 +1,163 @@
 <template>
   <div class="hello">
-    <!-- 这里用相对路径 -->
-    <img src="./用户名.png" alt="hahaha" style='width: 100;height: 100'>
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-
-    <button type="button" class="btn btn-link">Link</button>
-    <!-- 这里用相对路径 -->
-    <img src="./用户名.png" alt="hahaha" style='width: 100;height: 100'>
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-
-    <button type="button" class="btn btn-link">Link</button>
+    <!-- 主内容 -->
+    <div class="container-fluid">
+      <!-- Page Header-->
+      <div class="card">
+        <div class="card-header">
+          <h4>Data Table</h4>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <!-- 表格 -->
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>
+                        #
+                      </th>
+                      <th>
+                        Product
+                      </th>
+                      <th>
+                        Payment Taken
+                      </th>
+                      <th>
+                        Status
+                      </th>
+                      <th>
+                        Declined
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        1
+                      </td>
+                      <td>
+                        TB - Monthly
+                      </td>
+                      <td>
+                        01/04/2012
+                      </td>
+                      <td>
+                        Default
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">Declined</a>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        1
+                      </td>
+                      <td>
+                        TB - Monthly
+                      </td>
+                      <td>
+                        01/04/2012
+                      </td>
+                      <td>
+                        Approved
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">Declined</a>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        2
+                      </td>
+                      <td>
+                        TB - Monthly
+                      </td>
+                      <td>
+                        02/04/2012
+                      </td>
+                      <td>
+                        Declined
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">Declined</a>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        3
+                      </td>
+                      <td>
+                        TB - Monthly
+                      </td>
+                      <td>
+                        03/04/2012
+                      </td>
+                      <td>
+                        Pending
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">Declined</a>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td>
+                        4
+                      </td>
+                      <td>
+                        TB - Monthly
+                      </td>
+                      <td>
+                        04/04/2012
+                      </td>
+                      <td>
+                        Call in to confirm
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">Declined</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 分页 -->
+            <div class="container-fluid mt-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <nav>
+                    <ul class="pagination  justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" href="#">Previous</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">4</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">5</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
