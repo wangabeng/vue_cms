@@ -220,6 +220,9 @@ export default {
               height: 3.5rem;
             }
           }
+          .dropdown-menu {
+            z-index: 10000;
+          }
         }
       }
     }

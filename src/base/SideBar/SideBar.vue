@@ -113,6 +113,10 @@ export default {
   transition: all 0.3s;
   background-color: #393836;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .sidenav-header {
     background: #292929;
     padding: 14px;
@@ -239,6 +243,7 @@ export default {
     background: #292929;
     width: 100%;
     line-height: 1;
+    padding: 0;
 
     .sidenav-header-inner {
       display: none!important;
@@ -266,6 +271,7 @@ export default {
         img {
           width: 3rem;
           height: 3rem;
+          border-radius: 50%!important;
         }
       }
     }
