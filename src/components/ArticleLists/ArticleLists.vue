@@ -163,7 +163,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'ArticleLists',
   props: {
     msg: String
   },

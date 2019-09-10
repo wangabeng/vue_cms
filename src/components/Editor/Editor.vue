@@ -1,7 +1,74 @@
 <template>
   <div class="m-editor">
-    <div ref="editor" style="text-align:left;background-color: #fff;"></div>
-    <p><button class="btn btn-primary btn-lg mt-4" id="btnGenCode" role="button" @click='editorSubmit'>保存 »</button></p>
+    <!-- 选项 -->
+    <div class="container-fluid">
+      <div class="col-md-12">
+        <form>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-1 col-form-label">author</label>
+            <div class="col-sm-11">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-1 col-form-label">title</label>
+            <div class="col-sm-11">
+              <input type="text" class="form-control" id="inputPassword3" placeholder="title">
+            </div>
+          </div>
+
+          <!-- 类型选择 -->
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-1 pt-0">typs</legend>
+              <div class="col-sm-11">
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="type1" value="option1" checked>
+                  <label class="form-check-label" for="type1">
+                    First radio
+                  </label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="type2" value="option2">
+                  <label class="form-check-label" for="type2">
+                    Second radio
+                  </label>
+                </div>
+                <div class="form-check disabled mb-3">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                  <label class="form-check-label" for="gridRadios3">
+                    Third disabled radio
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 文件上传 -->
+          <div class="form-group">
+            <label for="exampleInputFile col-sm-1">File input</label>
+            <input type="file" class="form-control-file" id="exampleInputFile" />
+          </div>
+          
+          <!-- 文件上传回显 -->
+          <ul class="show-pic d-flex align-items-center justify-content-start">
+            <li class="each-image list-unstyled mr-5" style="background-image: url('https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_x2_5869f49.png');"><i class="fa fa-times" aria-hidden="true"></i></li>
+          </ul>
+
+        </form>
+      </div>
+      
+      <div class="col-md-12">
+        <h6 class='mb-3 mt-4'>content：</h6>
+        <div ref="editor" style="text-align:left;background-color: #fff;"></div>
+        <p><button class="btn btn-primary mt-4" id="btnGenCode" role="button" @click='editorSubmit'>保存 »</button></p>
+      </div>     
+    </div>
+    
+
+
   </div>
 </template>
 
@@ -62,34 +129,26 @@ export default {
   margin: 0;
   padding: 3rem;
 }
+
+// 文件上传回显
+.show-pic {
+
+  .each-image {
+    margin-top: 1rem;
+    width: 5rem;
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+    position: relative;
+    i {
+      position: absolute;
+      top: -.5rem;
+      right: -1rem;
+      color: var(--orange);
+    }
+
+  }
+}
 </style>
-
-<!-- springboot 上传 参照 
-https://blog.csdn.net/moshowgame/article/details/83099562
--->
-
-<!-- 作者：懵懂老头
-链接：https://zhuanlan.zhihu.com/p/43416702
-来源：知乎
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
-Express.post('/UploadImg',function (Request,Response) {
-  var From = new Formidable.IncomingForm();
-  //设置保存 文件路径
-  var TargetFile = Path.join(__dirname, './Public/');
-  From.uploadDir = TargetFile;
-
-  From.parse(Request, function (err, fields, files) {
-    if (err) throw err;
-    var FilePath = files.Content.path;    //此content由前端uploadFileName设置
-    var NewPath = Path.join(Path.dirname(FilePath), files.Content.name);
-    FS.rename(FilePath, NewPath, function (err) {
-      if (err) throw err;
-      var MyJson = {
-        errno: 0,
-        data:['http://localhost:8888/' + files.Content.name]
-      };
-      Response.json(MyJson);
-    });
-  });
-}); -->

@@ -29,8 +29,13 @@
             <li><a href="javascript:;" @click='subLiTab($event)'>Page</a></li>
             <li><a href="javascript:;" class='' @click='subLiTab($event)'>Page</a></li>
 
+            
+
             <li><a href="javascript:;" class='' @click='subLiTab("/index/editor", $event)'>富文本</a></li>
-            <li><a href="javascript:;" class='active' @click='subLiTab("/index/helloworld", $event)'>hellowor</a></li>
+
+            <li><a href="javascript:;" class='' @click='subLiTab("/index/articledetail", $event)'>详情</a></li>
+
+            <li><a href="javascript:;" class='active' @click='subLiTab("/index/articlelists", $event)'>articlelists</a></li>
 
           </ul>
         </li>
@@ -66,13 +71,11 @@ export default {
   methods: {
     // 一级分类收缩展开
     outerLiTab: function (e) {
-      console.log(e.currentTarget);
       $(e.currentTarget).find(".right-icon").toggleClass("collapse-status");
       $(e.currentTarget).parent().find('ul.collapse').slideToggle();
     },
     // 二级分类切换
     subLiTab: function (path, e) {
-      console.log(e.currentTarget);
       this.$router.push({ path: path})
 
       $(".dropdown-wrpper li a").removeClass('active');

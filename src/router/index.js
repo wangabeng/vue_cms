@@ -6,8 +6,11 @@ import UserCenter from '@/components/UserCenter/UserCenter'
 import Register from '@/components/Register/Register'
 import Login from '@/components/Login/Login'
 import HelloWorld from '@/components/HelloWorld/HelloWorld' // @别名 src
+import ArticleLists from '@/components/ArticleLists/ArticleLists'
+
 import NotFound from '@/components/NotFound/NotFound'
 import Editor from '@/components/Editor/Editor'
+import ArticleDetail from '@/components/ArticleDetail/ArticleDetail' // 文章详情
 import Error from '@/components/Error/Error'
 // import ItemCenter from '@/components/item-center/ItemCenter'
 // import Cart from '@/components/cart/Cart'
@@ -15,6 +18,12 @@ import Error from '@/components/Error/Error'
 import store from '@/store/index'
 
 Vue.use(Router)
+
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 const router = new Router({
   // 如果开启history模式 会出现如果二级路由找不到 无法跳转到404页面的错误 此时需要后端配合 重定向到index.html页
@@ -36,6 +45,14 @@ const router = new Router({
         {
           path: "helloworld",
           component: HelloWorld
+        },
+        {
+          path: "articlelists",
+          component: ArticleLists
+        },
+        {
+          path: "articledetail",
+          component: ArticleDetail
         },
         {
           path: "editor",
