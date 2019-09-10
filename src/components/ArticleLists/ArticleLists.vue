@@ -16,19 +16,25 @@
                   <thead>
                     <tr>
                       <th>
-                        #
+                        发布时间
                       </th>
                       <th>
-                        Product
+                        标题
                       </th>
                       <th>
-                        Payment Taken
+                        发布者
                       </th>
                       <th>
                         Status
                       </th>
                       <th>
-                        Declined
+                        详情
+                      </th>
+                      <th>
+                        编辑
+                      </th>
+                      <th>
+                        删除
                       </th>
                     </tr>
                   </thead>
@@ -44,10 +50,16 @@
                         01/04/2012
                       </td>
                       <td>
-                        Default
+                        01/04/2012
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">Declined</a>
+                        <a href="#"  class="text-primary">详情</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">编辑</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">删除</a>
                       </td>
                     </tr>
                     <tr class="">
@@ -64,7 +76,13 @@
                         Approved
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">Declined</a>
+                        <a href="#"  class="text-primary">详情</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">编辑</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">删除</a>
                       </td>
                     </tr>
                     <tr class="">
@@ -81,7 +99,13 @@
                         Declined
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">Declined</a>
+                        <a href="#"  class="text-primary">详情</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">编辑</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">删除</a>
                       </td>
                     </tr>
                     <tr class="">
@@ -98,7 +122,13 @@
                         Pending
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">Declined</a>
+                        <a href="#"  class="text-primary">详情</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">编辑</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">删除</a>
                       </td>
                     </tr>
                     <tr class="">
@@ -115,7 +145,13 @@
                         Call in to confirm
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">Declined</a>
+                        <a href="#"  class="text-primary">详情</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">编辑</a>
+                      </td>
+                      <td>
+                        <a href="#"  class="text-primary">删除</a>
                       </td>
                     </tr>
                   </tbody>
@@ -129,7 +165,7 @@
                   <nav>
                     <ul class="pagination  justify-content-center">
                       <li class="page-item">
-                        <a class="page-link" href="#">Previous</a>
+                        <a class="page-link" href="#">上一页</a>
                       </li>
                       <li class="page-item">
                         <a class="page-link" href="#">1</a>
@@ -141,13 +177,16 @@
                         <a class="page-link" href="#">3</a>
                       </li>
                       <li class="page-item">
-                        <a class="page-link" href="#">4</a>
+                        <a class="page-link" href="#">..</a>
                       </li>
                       <li class="page-item">
                         <a class="page-link" href="#">5</a>
                       </li>
                       <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                        <a class="page-link" href="#">6</a>
+                      </li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">下一页</a>
                       </li>
                     </ul>
                   </nav>

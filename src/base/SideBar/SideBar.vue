@@ -16,26 +16,25 @@
     <div class="main-menu">
       <h5 class="sidenav-heading">Main</h5>
       <ul id="side-main-menu" class="side-main-menu list-unstyled">                  
-        <li><a href="index.html"><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>Home</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a></li>
+        <!-- <li><a href="index.html"><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>Home</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a></li>
         <li><a href="forms.html"><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>Forms</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a></li>
         <li class=""><a href="charts.html"> <i class="fa fa-bar-chart left-icon"></i><span>Charts</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a></li>
-        <li><a href="tables.html"><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>Tables</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a></li>
+        <li><a href="tables.html"><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>Tables</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a></li> -->
 
         <!-- 带下拉分类 -->
         <li class='active' >
           <a href="javascript:;" aria-expanded="false" data-toggle="collapse" 
             @click='outerLiTab($event)'><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>下拉菜单</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled dropdown-wrpper show">
-            <li><a href="javascript:;" @click='subLiTab($event)'>Page</a></li>
-            <li><a href="javascript:;" class='' @click='subLiTab($event)'>Page</a></li>
+            <!-- <li><a href="javascript:;" @click='subLiTab($event)'>Page</a></li>
+            <li><a href="javascript:;" class='' @click='subLiTab($event)'>Page</a></li> -->
 
-            
+            <li><a href="javascript:;" class='active' @click='subLiTab("/index/articlelists", $event)'>新闻中心</a></li>
 
             <li><a href="javascript:;" class='' @click='subLiTab("/index/editor", $event)'>富文本</a></li>
 
             <li><a href="javascript:;" class='' @click='subLiTab("/index/articledetail", $event)'>详情</a></li>
 
-            <li><a href="javascript:;" class='active' @click='subLiTab("/index/articlelists", $event)'>articlelists</a></li>
 
           </ul>
         </li>
@@ -50,7 +49,7 @@
             <li><a href="javascript:;" @click='subLiTab($event)'>Page</a></li>
           </ul>
         </li>
-
+        
         <li>
           <a href="#"><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>Demo</span>
           <div class="badge badge-warning ml-1">6 New</div><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a>
@@ -76,7 +75,7 @@ export default {
     },
     // 二级分类切换
     subLiTab: function (path, e) {
-      this.$router.push({ path: path})
+      this.$router.push({ path: path, query: {type: 1, page: 1}});
 
       $(".dropdown-wrpper li a").removeClass('active');
       $(e.currentTarget).addClass('active');

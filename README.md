@@ -46,3 +46,16 @@ src-------common（存放资源文件 fonts image js sass）
       |
       -----store (vue-x文件夹)    
 ``` 
+
+# 路由
+### 1 文章列表  
+http://localhost:3000/#/index/articlelists
+参数type 值 news serviceitem  certitem sample
+参数 page 值 当前页 1  2  3  
+?type=news&page=1
+
+### 2 内容详情页
+http://localhost:3000/#/index/articledetail
+参数type 值 news serviceitem  certitem sample
+参数 number 值 当前第几条 1  2  3  
+?type=news&number=1
