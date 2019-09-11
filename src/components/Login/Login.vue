@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'src/api/axios';
 
 export default {
   name: 'Login',
@@ -83,8 +83,28 @@ export default {
   },
   methods: {
     submitLogin: function () {
+      var _this = this;
       // 获取提交数据
-      console.log(axios);
+      axios.post('/admin/login', {
+          params: {
+            userName: _this.userName,
+            password: _this.password
+          },
+          withCredentials: true
+        })
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      /*var _this = this;
+      $.post("http://localhost:8080/consult/admin/login",{
+        userName: _this.userName,
+        password: _this.password
+      },function(result){
+        console.log(result);
+      });*/
     }
   }
 }
