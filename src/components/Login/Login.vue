@@ -19,10 +19,12 @@
                     </div>
                     <form class="user">
                       <div class="form-group">
-                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                        <!-- 用户名 -->
+                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." v-model="userName">
                       </div>
                       <div class="form-group">
-                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                        <!-- 密码 -->
+                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" v-model="password">
                       </div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox small">
@@ -30,7 +32,8 @@
                           <label class="custom-control-label" for="customCheck">Remember Me</label>
                         </div>
                       </div>
-                      <a href="index.html" class="btn btn-primary btn-user btn-block">
+                      <a href="javascript:;" class="btn btn-primary btn-user btn-block"
+                        @click='submitLogin'>
                         Login
                       </a>
                       <hr>
@@ -62,13 +65,27 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Login',
+  data () {
+    return {
+      userName: "",
+      password: ""
+    };
+  },
   props: {
     msg: String
   },
   mounted () {
-    console.log($(".m-index").html());
+    
+  },
+  methods: {
+    submitLogin: function () {
+      // 获取提交数据
+      console.log(axios);
+    }
   }
 }
 </script>
