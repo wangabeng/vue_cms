@@ -94,25 +94,28 @@ const router = new Router({
 
 })
 
-// 路由卫生 鉴权 获取和设置用户token及userInfo信息
-/*router.beforeEach((to, from, next) => {
+// 路由卫士 鉴权 获取和设置用户token及userInfo信息
+router.beforeEach((to, from, next) => {
   // 判断将要跳转的路由是否需要鉴权
   if (to.matched.some(record => record.meta.requireAuth)) {
     // 从vuex中获取token数据
     if(!store.getters.token) {
+      next('/login');
+      
       // 远程请求token 如果获取到token 存到vux中 并把用户信息存入
-      var valueRandom = Math.random().toFixed(3);
+      /*var valueRandom = Math.random().toFixed(3);
       if (valueRandom < .5) {
         // 路由跳转到登录页
         // console.log('小于.5' +valueRandom);
         next('/login');
         return;
       }
+      // 设置vuex
       store.dispatch('setToken', Math.random().toFixed(3));
       store.dispatch('setUserInfo', {
         'name': 'ben',
         'age': 18,
-      }); 
+      }); */
 
     } else { // 如果有用户token信息
       if (!store.getters.userInfo) { // 如果没有用户信息
@@ -125,7 +128,7 @@ const router = new Router({
     }
   }
   next();
-})*/
+})
 
 /*router.afterEach((to, from) => {
   console.log("后置守卫TO：", to, "后置守卫FROM：", from);

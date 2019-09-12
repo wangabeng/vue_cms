@@ -66,6 +66,7 @@
 
 <script>
 import axios from 'src/api/axios';
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: 'Login',
@@ -81,7 +82,17 @@ export default {
   mounted () {
     
   },
+  computed: {
+    ...mapGetters([
+      'token',
+      'userInfo'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'setToken',
+      'setUserInfo'
+    ]),
     submitLogin: function () {
       var _this = this;
       // 获取提交数据
@@ -90,11 +101,15 @@ export default {
             userName: _this.userName,
             password: _this.password
           },
-          withCredentials: true // 可以拿到cookie
+          // withCredentials: true // 可以拿到cookie
         })
         .then(function (response) {
+          // console.log(response.data);
           // 如果登录成功
           if (response.data.code == 0) {
+            // _this.$router.push({ path: "/index", query: {type: 1, page: 1}});
+            _this.setToken(response.data.data.token);
+            _this.setToken(response.data.data.userInfo);
             _this.$router.push({ path: "/index", query: {type: 1, page: 1}});
           }
         })

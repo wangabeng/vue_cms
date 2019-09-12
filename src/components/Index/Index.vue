@@ -31,7 +31,7 @@
              <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow show">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="mr-2 d-none d-lg-inline ">abeng</span>
+                <span class="mr-2 d-none d-lg-inline ">{{userInfo.name}}</span>
                 <img class="img-profile rounded-circle ml-2 mr-2" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -116,6 +116,8 @@ import SideBar from 'base/SideBar/SideBar.vue'
 import MHeader from 'base/MHeader/MHeader.vue'
 import MFooter from 'base/MFooter/MFooter.vue'
 
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
   name: 'Index',
   components: {
@@ -127,6 +129,12 @@ export default {
     this.windowResize();
 
 
+  },
+  computed: {
+    ...mapGetters([
+      'token',
+      'userInfo'
+    ])
   },
   methods: {
     // 顶部导航按钮切换
