@@ -90,16 +90,19 @@ export default {
             userName: _this.userName,
             password: _this.password
           },
-          withCredentials: true
+          withCredentials: true // 可以拿到cookie
         })
         .then(function (response) {
-          console.log(response.data);
+          // 如果登录成功
+          if (response.data.code == 0) {
+            _this.$router.push({ path: "/index", query: {type: 1, page: 1}});
+          }
         })
         .catch(function (error) {
           console.log(error);
         });
-      /*var _this = this;
-      $.post("http://localhost:8080/consult/admin/login",{
+      // var _this = this;
+      /*$.post("http://localhost:8080/consult/admin/login",{
         userName: _this.userName,
         password: _this.password
       },function(result){
