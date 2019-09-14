@@ -31,7 +31,7 @@
              <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow show">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="mr-2 d-none d-lg-inline ">{{userInfo.name}}</span>
+                <span class="mr-2 d-none d-lg-inline " v-if="!!userInfo">{{userInfo.userName}}</span>
                 <img class="img-profile rounded-circle ml-2 mr-2" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->

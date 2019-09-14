@@ -24,16 +24,16 @@
         <!-- 带下拉分类 -->
         <li class='active' >
           <a href="javascript:;" aria-expanded="false" data-toggle="collapse" 
-            @click='outerLiTab($event)'><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>下拉菜单</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a>
+            @click='outerLiTab($event)'><i class="fa fa-h-square left-icon" aria-hidden="true"></i><span>新闻相关</span><i class="fa fa-angle-right right-icon" aria-hidden="true"></i></a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled dropdown-wrpper show">
             <!-- <li><a href="javascript:;" @click='subLiTab($event)'>Page</a></li>
             <li><a href="javascript:;" class='' @click='subLiTab($event)'>Page</a></li> -->
 
             <li><a href="javascript:;" class='active' @click='subLiTab("/index/articlelists", $event)'>新闻中心</a></li>
 
-            <li><a href="javascript:;" class='' @click='subLiTab("/index/editor", $event)'>富文本</a></li>
+            <li><a href="javascript:;" class='' @click='subLiTab("/index/editor", $event)'>编辑新闻</a></li>
 
-            <li><a href="javascript:;" class='' @click='subLiTab("/index/articledetail", $event)'>详情</a></li>
+            <li><a href="javascript:;" class='' @click='subLiTab("/index/articledetail", $event)'>新闻详情</a></li>
 
 
           </ul>

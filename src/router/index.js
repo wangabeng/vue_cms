@@ -98,35 +98,16 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // 判断将要跳转的路由是否需要鉴权
   if (to.matched.some(record => record.meta.requireAuth)) {
-    // 从vuex中获取token数据
+    /*console.log("需要权限");
+    console.log(to);
+    console.log("需要权限 end");*/
+    // 如果未登陆 跳转到登陆页
     if(!store.getters.token) {
       next('/login');
-      
-      // 远程请求token 如果获取到token 存到vux中 并把用户信息存入
-      /*var valueRandom = Math.random().toFixed(3);
-      if (valueRandom < .5) {
-        // 路由跳转到登录页
-        // console.log('小于.5' +valueRandom);
-        next('/login');
-        return;
-      }
-      // 设置vuex
-      store.dispatch('setToken', Math.random().toFixed(3));
-      store.dispatch('setUserInfo', {
-        'name': 'ben',
-        'age': 18,
-      }); */
-
-    } else { // 如果有用户token信息
-      if (!store.getters.userInfo) { // 如果没有用户信息
-        // 获取用户信息并设置用户信息到vuex
-        store.dispatch('userInfo', {
-          'name': 'ben',
-          'age': 18,
-        }); 
-      }
+      return;
     }
   }
+  // 如果不需要登陆权限 直接进入要跳转的路由页面
   next();
 })
 
