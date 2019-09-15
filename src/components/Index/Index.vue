@@ -73,7 +73,9 @@
       
       <!-- 主内容区 -->
       <div class="content-view">
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </div>
 
       <!-- 页脚 -->

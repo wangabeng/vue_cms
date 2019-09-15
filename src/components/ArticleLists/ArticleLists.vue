@@ -24,9 +24,9 @@
                       <th>
                         发布者
                       </th>
-                      <th>
+                      <!-- <th>
                         Status
-                      </th>
+                      </th> -->
                       <th>
                         详情
                       </th>
@@ -39,113 +39,19 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <!-- 每一行 -->
+                    <tr class="" v-for="(item, index) in newsData.content">
                       <td>
-                        1
+                        {{item.createTime}}
                       </td>
                       <td>
-                        TB - Monthly
+                        {{item.newsTitle}}
                       </td>
                       <td>
-                        01/04/2012
+                        {{item.newsAuthor}}
                       </td>
                       <td>
-                        01/04/2012
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">详情</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">编辑</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">删除</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        1
-                      </td>
-                      <td>
-                        TB - Monthly
-                      </td>
-                      <td>
-                        01/04/2012
-                      </td>
-                      <td>
-                        Approved
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">详情</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">编辑</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">删除</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        2
-                      </td>
-                      <td>
-                        TB - Monthly
-                      </td>
-                      <td>
-                        02/04/2012
-                      </td>
-                      <td>
-                        Declined
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">详情</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">编辑</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">删除</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        3
-                      </td>
-                      <td>
-                        TB - Monthly
-                      </td>
-                      <td>
-                        03/04/2012
-                      </td>
-                      <td>
-                        Pending
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">详情</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">编辑</a>
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">删除</a>
-                      </td>
-                    </tr>
-                    <tr class="">
-                      <td>
-                        4
-                      </td>
-                      <td>
-                        TB - Monthly
-                      </td>
-                      <td>
-                        04/04/2012
-                      </td>
-                      <td>
-                        Call in to confirm
-                      </td>
-                      <td>
-                        <a href="#"  class="text-primary">详情</a>
+                        <a href="javascript:;"  class="text-primary" @click='detail(item.newsContent)'>详情{{item.newsContent}}</a>
                       </td>
                       <td>
                         <a href="#"  class="text-primary">编辑</a>
@@ -164,29 +70,14 @@
                 <div class="col-md-12">
                   <nav>
                     <ul class="pagination  justify-content-center">
-                      <li class="page-item">
-                        <a class="page-link" href="#">上一页</a>
+                      <li class="page-item" v-if='newsData.ifPrevious'>
+                        <a class="page-link" href="javascript:;" @click='preTab'>上一页</a>
                       </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">1</a>
+                      <li class="page-item" v-for="(item, index) in pageList">
+                        <a class="page-link d-flex" :class="{'text-warning': (index + 1) === newsData.curPage}" href="javascript:;" @click='indexTab(index+1)'>{{index + 1}}</a>
                       </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">..</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">5</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">6</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">下一页</a>
+                      <li class="page-item" v-if='newsData.ifNext'>
+                        <a class="page-link" href="javascript:;" @click='nextTab'>下一页</a>
                       </li>
                     </ul>
                   </nav>
@@ -201,13 +92,78 @@
 </template>
 
 <script>
+import axios from 'src/api/axios';
+import {BASEURL} from "src/api/config.js"
+
 export default {
   name: 'ArticleLists',
+  data () {
+    return {
+      curRequest: {
+        requestPage: 1, // 默认从显示意义的第一页开始
+        PAGESIZE: 3 // 默认每页容量有3条内容 
+      },
+      newsData: [],
+      pageList: [],
+      pageSubject: "新闻中心"
+    };
+  },
   props: {
     msg: String
   },
-  mounted () {
-    // console.log($("h1").html() + "hahah");
+  methods: {
+    getNewsLists: function (curpage, pagesize) {
+      var _this = this;
+      // 请求文章列表
+      axios.get(BASEURL + '/newscenter/lists', {
+          params: {
+            curpage: curpage,
+            pagesize: pagesize,
+          }
+        })
+        .then(function (response) {
+          // console.log(response);
+          _this.newsData = response.data.data;
+          _this.pageList.length = response.data.data.TotalPages;
+          // console.log(_this.newsData);
+
+        })
+        .catch(function (error) {
+          // console.log(error);
+        });
+    },
+    // 通过页码切换
+    indexTab: function (index) {
+      this.getNewsLists(index, this.curRequest.PAGESIZE);
+    },
+    // 下一页
+    nextTab: function () {
+      if (this.newsData.ifNext) {
+        this.getNewsLists(++this.curRequest.requestPage, this.curRequest.PAGESIZE);
+      } else {
+        return;
+      }
+    },
+    // 上一页
+    preTab: function () {
+      if (this.newsData.ifPrevious) {
+        this.getNewsLists(--this.curRequest.requestPage, this.curRequest.PAGESIZE);
+      } else {
+        return;
+      }
+    },
+    // 查看详情
+    detail (content) {
+      console.log(content);
+      // 路由跳转
+      this.$router.push({ path: '/index/articledetail',/* query: {type: 1, page: 1}*/});
+    }
+
+
+  },
+  created  () {
+    // this.getNewsLists(this.curRequest.requestPage, this.curRequest.PAGESIZE);
+    this.getNewsLists(this.curRequest.requestPage, this.curRequest.PAGESIZE);
   }
 }
 </script>
@@ -215,8 +171,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import "common/sass/variable.scss";
-.hello {
-  margin: 0;
-  padding: 0;
-}
+
 </style>

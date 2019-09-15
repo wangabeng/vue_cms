@@ -48,7 +48,8 @@ const router = new Router({
         },
         {
           path: "articlelists", // {type: 1, page: 1}
-          component: ArticleLists
+          component: ArticleLists,
+          keepAlive: true
         },
         {
           path: "articledetail",
@@ -64,7 +65,7 @@ const router = new Router({
         },
       ],
       // 设置在当前一级路由为index的时的 二级路由
-      redirect:  {path: '/index/articlelists', query: {type: 1, page: 1}},
+      redirect:  {path: '/index/articlelists',/* query: {type: 1, page: 1}*/},
     },
     {
       path: '/register',

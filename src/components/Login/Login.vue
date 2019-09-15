@@ -110,7 +110,7 @@ export default {
             // _this.$router.push({ path: "/index", query: {type: 1, page: 1}});
             _this.setToken(response.data.data.token);
             _this.setUserInfo(response.data.data.userInfo);
-            _this.$router.push({ path: "/index", query: {type: 1, page: 1}});
+            _this.$router.push({ path: "/index", /*query: {type: 1, page: 1}*/});
           }
         })
         .catch(function (error) {

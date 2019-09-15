@@ -75,7 +75,7 @@ export default {
     },
     // 二级分类切换
     subLiTab: function (path, e) {
-      this.$router.push({ path: path, query: {type: 1, page: 1}});
+      this.$router.push({ path: path, /*query: {type: 1, page: 1}*/});
 
       $(".dropdown-wrpper li a").removeClass('active');
       $(e.currentTarget).addClass('active');
