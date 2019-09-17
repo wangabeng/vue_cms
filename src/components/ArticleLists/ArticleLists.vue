@@ -51,7 +51,7 @@
                         {{item.newsAuthor}}
                       </td>
                       <td>
-                        <a href="javascript:;"  class="text-primary" @click='detail(item.newsContent)'>详情{{item.newsContent}}</a>
+                        <a href="javascript:;"  class="text-primary" @click='detail(item.newsId)'>详情{{item.newsId}}</a>
                       </td>
                       <td>
                         <a href="#"  class="text-primary">编辑</a>
@@ -93,7 +93,7 @@
 
 <script>
 import axios from 'src/api/axios';
-import {BASEURL} from "src/api/config.js"
+import {BASEURL} from "src/api/config.js";
 
 export default {
   name: 'ArticleLists',
@@ -153,10 +153,9 @@ export default {
       }
     },
     // 查看详情
-    detail (content) {
-      console.log(content);
+    detail (id) {
       // 路由跳转
-      this.$router.push({ path: '/index/articledetail',/* query: {type: 1, page: 1}*/});
+      this.$router.push({ path: `/index/articledetail/${id}`,/* query: {type: 1, page: 1}*/});
     }
 
 

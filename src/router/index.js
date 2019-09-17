@@ -52,8 +52,9 @@ const router = new Router({
           keepAlive: true
         },
         {
-          path: "articledetail",
-          component: ArticleDetail
+          path: "articledetail/:id",
+          component: ArticleDetail,
+          name: 'articledetail'
         },
         {
           path: "editor",

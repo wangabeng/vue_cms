@@ -7,7 +7,7 @@
           <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">作者</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="润捷">
+              <input type="text" class="form-control" id="inputEmail3" v-model="author" placeholder="润捷">
             </div>
           </div>
 
@@ -25,23 +25,23 @@
               <legend class="col-form-label col-sm-2 pt-0">文章所属分类</legend>
               <div class="col-sm-10">
                 <div class="form-check mb-3">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="type1" value="option1" checked>
+                  <input class="form-check-input" type="radio" name="gridRadios" id="type1" value="新闻中心" v-model='subject'>
                   <label class="form-check-label" for="type1">
                     新闻中心
                   </label>
                 </div>
-                <!-- <div class="form-check mb-3">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="type2" value="option2">
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="type2" value="option2" v-model='subject'>
                   <label class="form-check-label" for="type2">
                     Second radio
                   </label>
-                </div> -->
-                <!-- <div class="form-check disabled mb-3">
-                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                </div>
+                <div class="form-check disabled mb-3">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled v-model='subject'>
                   <label class="form-check-label" for="gridRadios3">
                     新闻中心
                   </label>
-                </div> -->
+                </div>
               </div>
             </div>
           </fieldset>
@@ -68,7 +68,7 @@
       <div class="col-md-12">
         <h6 class='mb-3 mt-4'>编辑内容：</h6>
         <div ref="editor" style="text-align:left;background-color: #fff;"></div>
-        <p><button class="btn btn-primary mt-4" id="btnGenCode" role="button" @click='editorSubmit'>保存 »</button></p>
+        <p><button class="btn btn-primary mt-4" id="btnGenCode" role="button" @click.prevent.stop='editorSubmit'>保存 »</button></p>
       </div>     
     </div>
     
@@ -87,6 +87,9 @@ export default {
   name: 'Editor',
   data () {
     return {
+      'author': '润捷', // 作者
+      'subject': '新闻中心', // 文章主题
+
       'uploadSum': '',
       'editorHtml': '',
       'uploadfile': '',
@@ -138,8 +141,8 @@ export default {
       // 可选地，上面的请求可以这样做
       axios.post(BASEURL + '/article/editorsubmit', {
           params: {
-            author: "张三",
-            type: "新闻中心",
+            author: _this.author,
+            type: _this.subject,
             mainPic: _this.uploadSum, 
             content: _this.editorHtml
           }
@@ -150,6 +153,7 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+      return;  
     }
   },
   mounted () {

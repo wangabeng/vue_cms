@@ -13,17 +13,19 @@
         <div class="row">   
           <div class="col-md-12"> 
           
-            <div class="article">
-              <h3>Pellentesque habitant morbi tristique</h3>
+            <div class="article" v-if='!!cur'>
 
+              <div v-html='cur.newsContent'></div>
+              <!-- <h3>Pellentesque habitant morbi tristique</h3>
+              
               <div class="article-content">
-  
+                
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-
+              
                 <img src="http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2019/1/1/1546332398982_112.jpg" alt="">
-
+              
                 <p>Accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-              </div>
+              </div> -->
 
             </div>
 
@@ -38,10 +40,10 @@
                 <li class="page-item mr-5">
                   <a class="page-link" href="#">编辑</a>
                 </li>
-                <li class="page-item">
+                <li class="page-item" v-if='pre'>
                   <a class="page-link" href="#">上一篇</a>
                 </li>
-                <li class="page-item">
+                <li class="page-item" v-if='next'>
                   <a class="page-link" href="#">下一篇</a>
                 </li>
               </ul>
@@ -55,14 +57,80 @@
 </template>
 
 <script>
+import axios from 'src/api/axios';
+import {BASEURL} from "src/api/config.js";
+
 export default {
   name: 'ArticleDetail',
+  data () {
+    return {
+      curId: '',
+      pre: null,
+      cur: null,
+      next: null,
+    };
+  },
   props: {
     msg: String
   },
+  created () {
+    var _this = this;
+    this.curId = this.$route.params.id;
+    console.log('首次进入');
+
+    this.getCurPage();
+    // 获取路由页面参数
+    /*console.log(this.$route.params.id);
+    // 查询该条文章详情及上一条 下一条
+    axios.get(BASEURL + '/newscenter/detail', {
+        params: {
+          id: this.$route.params.id,
+        }
+      })
+      .then(function (response) {
+        _this.pre = response.data.data.pre;
+        _this.cur = response.data.data.cur;
+        _this.next = response.data.data.next;
+      })
+      .catch(function (error) {
+        // console.log(error);
+      });*/
+  },
   mounted () {
-    // console.log($("h1").html() + "hahah");
-  }
+  },
+  watch: {
+    $route (to, from) {
+      // 首次进入 无法监听路由变化
+      // console.log(to, 'afterEach改变', from);
+      // this.curId = this.$route.params.id;
+      if (to.name == 'articledetail') {
+        // 进入了该页面
+        console.log('进入了该页面');
+        // this.curId = this.$route.params.id;
+        this.getCurPage();
+      }
+    },
+
+  },
+  methods: {
+    getCurPage: function () {
+      var _this = this;
+      // 查询该条文章详情及上一条 下一条
+      axios.get(BASEURL + '/newscenter/detail', {
+          params: {
+            id: this.$route.params.id,
+          }
+        })
+        .then(function (response) {
+          _this.pre = response.data.data.pre;
+          _this.cur = response.data.data.cur;
+          _this.next = response.data.data.next;
+        })
+        .catch(function (error) {
+          // console.log(error);
+        });
+    }    
+  },
 }
 </script>
 
