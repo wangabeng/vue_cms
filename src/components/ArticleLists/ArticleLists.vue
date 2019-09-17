@@ -54,10 +54,10 @@
                         <a href="javascript:;"  class="text-primary" @click='detail(item.newsId)'>详情{{item.newsId}}</a>
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">编辑</a>
+                        <a href="javascript:;"  class="text-primary" @click='modi(item.newsId)'>编辑</a>
                       </td>
                       <td>
-                        <a href="#"  class="text-primary">删除</a>
+                        <a href="javascript:;"  class="text-primary" @click='deleteOne(item.newsId, index)'>删除</a>
                       </td>
                     </tr>
                   </tbody>
@@ -156,8 +156,36 @@ export default {
     detail (id) {
       // 路由跳转
       this.$router.push({ path: `/index/articledetail/${id}`,/* query: {type: 1, page: 1}*/});
-    }
+    },
+    // 删除一条数据
+    deleteOne (id, curIndex) {
+      // 数据库删除 然后dom删除
+      console.log(this.newsData.content);
+      this.newsData.content.splice(curIndex ,1);
 
+      let param = new FormData();
+      param.append("id", id);
+
+      let config = {
+        //添加请求头
+        headers: { "Content-Type": "multipart/form-data" },
+      };
+
+      axios.post(BASEURL + '/newscenter/delete', param, config)
+        .then(function (response) {
+          // console.log(response);
+        })
+        .catch(function (error) {
+          // console.log(error);
+        });
+
+    },
+
+    // 修改文章
+    modi (id) {
+    // this.$router.push({ path: `/index/articledetail/${id}`,/* query: {type: 1, page: 1}*/});
+      this.$router.push({ path: `/index/modify/${id}`});
+    }
 
   },
   created  () {

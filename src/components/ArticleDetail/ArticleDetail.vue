@@ -15,17 +15,17 @@
           
             <div class="article" v-if='!!cur'>
 
-              <div v-html='cur.newsContent'></div>
-              <!-- <h3>Pellentesque habitant morbi tristique</h3>
+              <h5>{{cur.newsTitle}}</h5>
+              <h6 class='text-secondary'>发布时间：{{cur.createTime}}</h6>
               
-              <div class="article-content">
+              <div class="article-content" v-html='cur.newsContent'>
                 
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-              
+                <!-- <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
+                              
                 <img src="http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2019/1/1/1546332398982_112.jpg" alt="">
-              
-                <p>Accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-              </div> -->
+                              
+                <p>Accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p> -->
+              </div>
 
             </div>
 
@@ -41,10 +41,10 @@
                   <a class="page-link" href="#">编辑</a>
                 </li>
                 <li class="page-item" v-if='pre'>
-                  <a class="page-link" href="#">上一篇</a>
+                  <a class="page-link" href="javascript:;" @click='preTab'>上一篇</a>
                 </li>
-                <li class="page-item" v-if='next'>
-                  <a class="page-link" href="#">下一篇</a>
+                <li class="page-item ml-2" v-if='next'>
+                  <a class="page-link" href="javascript:;" @click='nextTab'>下一篇</a>
                 </li>
               </ul>
             </nav>
@@ -78,7 +78,8 @@ export default {
     this.curId = this.$route.params.id;
     console.log('首次进入');
 
-    this.getCurPage();
+    this.curId = this.$route.params.id;
+    this.getCurPage(this.curId);
     // 获取路由页面参数
     /*console.log(this.$route.params.id);
     // 查询该条文章详情及上一条 下一条
@@ -107,18 +108,19 @@ export default {
         // 进入了该页面
         console.log('进入了该页面');
         // this.curId = this.$route.params.id;
-        this.getCurPage();
+        this.curId = this.$route.params.id;
+        this.getCurPage(this.curId);
       }
     },
 
   },
   methods: {
-    getCurPage: function () {
+    getCurPage: function (id) {
       var _this = this;
       // 查询该条文章详情及上一条 下一条
       axios.get(BASEURL + '/newscenter/detail', {
           params: {
-            id: this.$route.params.id,
+            id: id,
           }
         })
         .then(function (response) {
@@ -129,7 +131,23 @@ export default {
         .catch(function (error) {
           // console.log(error);
         });
-    }    
+    },
+    preTab: function () {
+      if (!this.pre) {
+        return;
+      }
+      console.log(this.pre.newsId);
+      this.curId = this.pre.newsId;
+      this.getCurPage(this.curId);
+    },
+    nextTab: function () {
+      if (!this.next) {
+        return;
+      }
+      console.log(this.next.newsId);
+      this.curId = this.next.newsId;
+      this.getCurPage(this.curId);
+    },
   },
 }
 </script>

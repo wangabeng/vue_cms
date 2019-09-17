@@ -42,10 +42,10 @@ const router = new Router({
         requireAuth: true // 在需要登录的路由的meta中添加响应的权限标识
       },
       children: [
-        {
+        /*{
           path: "helloworld",
           component: HelloWorld
-        },
+        },*/
         {
           path: "articlelists", // {type: 1, page: 1}
           component: ArticleLists,
@@ -56,9 +56,14 @@ const router = new Router({
           component: ArticleDetail,
           name: 'articledetail'
         },
-        {
+        /*{
           path: "editor",
-          component: Editor
+          component: Editor,
+          name: 'editor'
+        },*/
+        {
+          path: "modify/:id?", // :id?参数可以不传 如果不传 就是上传新文章 如果传 就是修改文章
+          component: Editor,
         },
         {
           path: "error",
@@ -104,10 +109,10 @@ router.beforeEach((to, from, next) => {
     console.log(to);
     console.log("需要权限 end");*/
     // 如果未登陆 跳转到登陆页
-    if(!store.getters.token) {
+    /*if(!store.getters.token) {
       next('/login');
       return;
-    }
+    }*/
   }
   // 如果不需要登陆权限 直接进入要跳转的路由页面
   next();
