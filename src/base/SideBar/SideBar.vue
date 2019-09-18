@@ -31,7 +31,7 @@
 
             <li><a href="javascript:;" class='active' @click='subLiTab("/index/articlelists", $event)'>新闻中心</a></li>
 
-            <li><a href="javascript:;" class='' @click='subLiTab("/index/editor", $event)'>编辑新闻</a></li>
+            <li><a href="javascript:;" class='' @click='subLiTab("/index/publishNew", $event)'>新增新闻</a></li>
 
             <li><a href="javascript:;" class='' @click='subLiTab("/index/articledetail/1568701749974365048", $event)'>新闻详情</a></li>
 

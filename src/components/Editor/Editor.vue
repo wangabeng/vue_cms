@@ -2,6 +2,8 @@
   <div class="m-editor">
     <!-- 选项 -->
     <div class="container-fluid">
+      <h4 class="col-md-12 mb-3">添加{{subject}}</h4>
+      <h4 class="col-md-12 mb-3" v-if='!!modiNews'>{{subject}}编号：{{modiNews.newsId}}</h4>
       <div class="col-md-12">
         <form>
           <div class="form-group row">
@@ -78,27 +80,62 @@
 </template>
 
 <script>
-import E from 'wangeditor'
+import E from 'wangeditor';
 // import axios from 'axios'
 import axios from 'src/api/axios';
-import {BASEURL} from "src/api/config.js"
+import {BASEURL} from "src/api/config.js";
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
   name: 'Editor',
   data () {
     return {
       'author': '润捷', // 作者
-      'subject': '新闻中心', // 文章主题
+      // 'subject': '新闻中心', // 文章主题
 
       'uploadSum': '',
       'editorHtml': '',
       'uploadfile': '',
+
+      'curArticle': null,
+      'curParam': ''
     };
   },
+  computed: {
+    ...mapGetters([
+      'modiNews'
+    ]),
+  },
   props: {
-    msg: String
+    subject: { // 如果父组件传递过来文章类型 即为编辑该篇文章 切在路由中携带该文章编号 否则 视为发布新文章
+      type: String, // type
+      default: '',
+    }
+  },
+  // 监听路由变化 一旦变化 清空vuex中新闻的内容
+  watch: {
+    $route (to, from) {
+      // 首次进入 无法监听路由变化
+      // console.log(to, '路由改变', from);
+      // this.curId = this.$route.params.id;
+     /* if (to.name == 'publishNew') {
+        // 进入了该页面
+        console.log('进入了该页面');
+        // this.curId = this.$route.params.id;
+        this.curId = this.$route.params.id;
+        this.getCurPage(this.curId);
+      }*/
+      console.log(this.$route.params);
+    },
+    curParam () {
+      console.log('参数变化');
+    }
+
   },
   methods: {
+    ...mapActions([
+      'setModiNews',
+    ]),
     // 移除上传的图片
     deleteImg () {
       this.uploadSum = '';
@@ -126,8 +163,8 @@ export default {
 
       axios.post(BASEURL + '/article/upload', param, config)
         .then(function (response) {
-           // console.log(response);
-           _this.uploadSum = response.data;
+          // console.log(response);
+          _this.uploadSum = response.data;
         })
         .catch(function (error) {
           //console.log(error);
@@ -148,13 +185,19 @@ export default {
           }
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
-          console.log(error);
+          // console.log(error);
         });
       return;  
     }
+  },
+  created () {
+    // 判断vuex是否存在
+    // console.log(this.modiNews,this.$route.params, this.subject); // 如果不存在 就是新增
+    console.log(this.$route.params);
+    // 如果路由参数为空 就是新增 ，如果存在 就是编辑
   },
   mounted () {
     var _this = this;

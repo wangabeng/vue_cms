@@ -54,7 +54,7 @@
                         <a href="javascript:;"  class="text-primary" @click='detail(item.newsId)'>详情{{item.newsId}}</a>
                       </td>
                       <td>
-                        <a href="javascript:;"  class="text-primary" @click='modi(item.newsId)'>编辑</a>
+                        <a href="javascript:;"  class="text-primary" @click='modi(item)'>编辑</a>
                       </td>
                       <td>
                         <a href="javascript:;"  class="text-primary" @click='deleteOne(item.newsId, index)'>删除</a>
@@ -94,6 +94,7 @@
 <script>
 import axios from 'src/api/axios';
 import {BASEURL} from "src/api/config.js";
+import {mapGetters, mapActions} from 'vuex';
 
 export default {
   name: 'ArticleLists',
@@ -111,7 +112,15 @@ export default {
   props: {
     msg: String
   },
+  computed: {
+    ...mapGetters([
+      'modiNews'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'setModiNews',
+    ]),
     getNewsLists: function (curpage, pagesize) {
       var _this = this;
       // 请求文章列表
@@ -182,16 +191,20 @@ export default {
     },
 
     // 修改文章
-    modi (id) {
+    modi (item) {
     // this.$router.push({ path: `/index/articledetail/${id}`,/* query: {type: 1, page: 1}*/});
-      this.$router.push({ path: `/index/modify/${id}`});
+      this.$router.push({ path: `/index/modify/${item.newsId}`});
+      // 把该文章数据存到vuex
+      this.setModiNews(item);
+      // console.log(this.modiNews);
     }
 
   },
   created  () {
     // this.getNewsLists(this.curRequest.requestPage, this.curRequest.PAGESIZE);
     this.getNewsLists(this.curRequest.requestPage, this.curRequest.PAGESIZE);
-  }
+  },
+
 }
 </script>
 

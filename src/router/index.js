@@ -9,7 +9,9 @@ import HelloWorld from '@/components/HelloWorld/HelloWorld' // @别名 src
 import ArticleLists from '@/components/ArticleLists/ArticleLists'
 
 import NotFound from '@/components/NotFound/NotFound'
-import Editor from '@/components/Editor/Editor'
+// import Editor from '@/components/Editor/Editor'
+import Modify from '@/components/Modify/Modify'
+import PublishNew from '@/components/PublishNew/PublishNew'
 import ArticleDetail from '@/components/ArticleDetail/ArticleDetail' // 文章详情
 import Error from '@/components/Error/Error'
 // import ItemCenter from '@/components/item-center/ItemCenter'
@@ -56,14 +58,13 @@ const router = new Router({
           component: ArticleDetail,
           name: 'articledetail'
         },
-        /*{
-          path: "editor",
-          component: Editor,
-          name: 'editor'
-        },*/
+        {
+          path: "publishNew",
+          component: PublishNew,
+        },
         {
           path: "modify/:id?", // :id?参数可以不传 如果不传 就是上传新文章 如果传 就是修改文章
-          component: Editor,
+          component: Modify,
         },
         {
           path: "error",

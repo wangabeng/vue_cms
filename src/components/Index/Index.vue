@@ -129,8 +129,6 @@ export default {
   },
   mounted () {
     this.windowResize();
-
-
   },
   computed: {
     ...mapGetters([
