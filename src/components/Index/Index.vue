@@ -73,9 +73,11 @@
       
       <!-- 主内容区 -->
       <div class="content-view">
+        <!-- v-if="$route.meta.keepAlive" -->
         <keep-alive>
-          <router-view></router-view>
+          <router-view ></router-view>
         </keep-alive>
+
       </div>
 
       <!-- 页脚 -->

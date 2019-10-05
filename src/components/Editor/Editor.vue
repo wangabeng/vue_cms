@@ -2,9 +2,11 @@
   <div class="m-editor">
     <!-- 选项 -->
     <div class="container-fluid">
-      <h4 class="col-md-12 mb-3">添加{{subject}}</h4>
-      <h4 class="col-md-12 mb-3" v-if='!!modiNews'>{{subject}}编号：{{modiNews.newsId}}</h4>
+      <!-- <h4 class="col-md-12 mb-3">添加{{subject}}</h4> -->
+      <!-- <h4 class="col-md-12 mb-3" v-if='!!modiNews'>{{subject}}编号：{{modiNews.newsId}}</h4> -->
+      
       <div class="col-md-12">
+        <slot name='categoryTitle'></slot>
         <form>
           <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">作者</label>
@@ -17,7 +19,8 @@
           <div class="form-group row">
             <label for="inputPassword3" class="col-sm-2 col-form-label">标题</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputPassword3" placeholder="请输入标题">
+              <!-- <input type="text" class="form-control" id="inputPassword3" placeholder="请输入标题" v-bind='publishTitle'> -->
+              <input v-if='aritcleContent' type="text" class="form-control" id="inputPassword3" placeholder="请输入标题" v-model='publishTitle'>
             </div>
           </div>
 
@@ -66,15 +69,19 @@
 
         </form>
       </div>
-      
+
+       {{aritcleContent}}
+       <br>
+       {{publishTitle}}
+
       <div class="col-md-12">
         <h6 class='mb-3 mt-4'>编辑内容：</h6>
-        <div ref="editor" style="text-align:left;background-color: #fff;"></div>
+        <div ref="editor" class='editor-container-modify' style="text-align:left;background-color: #fff;"></div>
         <p><button class="btn btn-primary mt-4" id="btnGenCode" role="button" @click.prevent.stop='editorSubmit'>保存 »</button></p>
       </div>     
     </div>
-    
 
+   
 
   </div>
 </template>
@@ -92,25 +99,37 @@ export default {
     return {
       'author': '润捷', // 作者
       // 'subject': '新闻中心', // 文章主题
+      // 'publishTitle': '',
 
       'uploadSum': '',
-      'editorHtml': '',
+      // 'editorHtml': '',
       'uploadfile': '',
 
       'curArticle': null,
-      'curParam': ''
+      'curParam': '',
     };
   },
   computed: {
     ...mapGetters([
-      'modiNews'
+      // 'modiNews'
     ]),
+    publishTitle () {
+      return this.aritcleContent? this.aritcleContent.newsTitle: ''
+    },
+    editorHtml () {
+      return this.aritcleContent? this.aritcleContent.newsContent: ''
+    },
+
   },
   props: {
-    subject: { // 如果父组件传递过来文章类型 即为编辑该篇文章 切在路由中携带该文章编号 否则 视为发布新文章
+    subject: { // 必传 文章分类
       type: String, // type
       default: '',
-    }
+    },
+    aritcleContent: { // 文章内容
+      type: Object, // type
+      default: null,
+    },
   },
   // 监听路由变化 一旦变化 清空vuex中新闻的内容
   watch: {
@@ -125,16 +144,16 @@ export default {
         this.curId = this.$route.params.id;
         this.getCurPage(this.curId);
       }*/
-      console.log(this.$route.params);
+      // console.log(this.$route.params);
     },
     curParam () {
-      console.log('参数变化');
-    }
+      // console.log('参数变化');
+    },
 
   },
   methods: {
     ...mapActions([
-      'setModiNews',
+      // 'setModiNews',
     ]),
     // 移除上传的图片
     deleteImg () {
@@ -196,12 +215,16 @@ export default {
   created () {
     // 判断vuex是否存在
     // console.log(this.modiNews,this.$route.params, this.subject); // 如果不存在 就是新增
-    console.log(this.$route.params);
+    // console.log(this.$route.params);
     // 如果路由参数为空 就是新增 ，如果存在 就是编辑
+    console.log('editor');
   },
   mounted () {
     var _this = this;
     var editor = new E(this.$refs.editor);
+
+    // editor.txt.html("12445");
+
     editor.customConfig = {
       onchange:function(html){
         _this.editorHtml = html;
@@ -213,6 +236,8 @@ export default {
       uploadImgMaxLength : 1 , // 限制一次最多上传 1 张图片
     };
     editor.create();
+
+    // editor.txt.html(_this.editorHtml);
   }
 }
 </script>
@@ -245,5 +270,9 @@ export default {
     }
 
   }
+}
+
+.editor-container-modify {
+  overflow: hidden!important;
 }
 </style>

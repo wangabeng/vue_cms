@@ -41,7 +41,8 @@ const router = new Router({
       component: Index,
       meta: {
         title: '首页',
-        requireAuth: true // 在需要登录的路由的meta中添加响应的权限标识
+        requireAuth: true, // 在需要登录的路由的meta中添加响应的权限标识
+        keepAlive: true, // keepalive条件缓存
       },
       children: [
         /*{
@@ -51,24 +52,30 @@ const router = new Router({
         {
           path: "articlelists", // {type: 1, page: 1}
           component: ArticleLists,
+          name: 'articlelists', 
           keepAlive: true
         },
         {
           path: "articledetail/:id",
           component: ArticleDetail,
-          name: 'articledetail'
+          name: 'articledetail',
+          keepAlive: false
         },
         {
           path: "publishNew",
           component: PublishNew,
+          keepAlive: false,
         },
         {
           path: "modify/:id?", // :id?参数可以不传 如果不传 就是上传新文章 如果传 就是修改文章
           component: Modify,
+          name: 'modify',
+          keepAlive: false
         },
         {
           path: "error",
-          component: Error
+          component: Error,
+          keepAlive: false
         },
       ],
       // 设置在当前一级路由为index的时的 二级路由

@@ -1,6 +1,13 @@
 <template>
   <div class="m-publish">
-    <Editor v-bind:subject="subjectT"></Editor>
+    <Editor v-bind:subject="subjectT">
+      <!-- 把分类（新闻中心）和新闻性情传入 -->
+      <div class="slot-container" slot='categoryTitle'>
+        <h4><span>分类：</span>新闻中心</h4>
+        <h5>新增新闻</h5>
+        <!-- <h5><span>编号：</span><span></span></h5> -->
+      </div>
+    </Editor>
   </div>
 </template>
 
@@ -33,7 +40,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setModiNews',
+      // 'setModiNews',
     ]),
   },
   mounted () {
@@ -68,6 +75,15 @@ export default {
       color: var(--orange);
     }
 
+  }
+}
+
+.slot-container {
+  h4 {
+    margin-bottom: 1.2rem;
+  }
+  h5 {
+    margin-bottom: 1.2rem;
   }
 }
 </style>

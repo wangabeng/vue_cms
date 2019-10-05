@@ -102,12 +102,11 @@ export default {
   watch: {
     $route (to, from) {
       // 首次进入 无法监听路由变化
-      // console.log(to, 'afterEach改变', from);
+      // console.log('afterEach改变to: ', to);
       // this.curId = this.$route.params.id;
       if (to.name == 'articledetail') {
         // 进入了该页面
-        console.log('进入了该页面');
-        // this.curId = this.$route.params.id;
+        console.log('路由进入了该页面');
         this.curId = this.$route.params.id;
         this.getCurPage(this.curId);
       }
@@ -136,7 +135,7 @@ export default {
       if (!this.pre) {
         return;
       }
-      console.log(this.pre.newsId);
+      console.log(this.pre.newsId); // 切换页面的时候打印
       this.curId = this.pre.newsId;
       this.getCurPage(this.curId);
     },
@@ -144,7 +143,7 @@ export default {
       if (!this.next) {
         return;
       }
-      console.log(this.next.newsId);
+      console.log(this.next.newsId); // 切换页面的时候打印
       this.curId = this.next.newsId;
       this.getCurPage(this.curId);
     },
