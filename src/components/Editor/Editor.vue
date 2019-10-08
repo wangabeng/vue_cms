@@ -62,7 +62,8 @@
           
           <!-- 文件上传回显 -->
           <ul class="show-pic d-flex align-items-center justify-content-start" v-if='uploadSum'>
-            <li class="each-image list-unstyled mr-5" style="background-image: url('https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_x2_5869f49.png');"
+            <!-- style="background-image: url('https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_x2_5869f49.png');" -->
+            <li class="each-image list-unstyled mr-5" 
               v-bind:style="{ backgroundImage: 'url(' + uploadSum + ')' }"
               ><i class="fa fa-times" aria-hidden="true" @click='deleteImg'></i></li>
           </ul>
@@ -78,6 +79,7 @@
         <h6 class='mb-3 mt-4'>编辑内容：</h6>
         <div ref="editor" class='editor-container-modify' style="text-align:left;background-color: #fff;"></div>
         <p><button class="btn btn-primary mt-4" id="btnGenCode" role="button" @click.prevent.stop='editorSubmit'>保存 »</button></p>
+        <p><button class="btn btn-primary mt-4" id="aaaaaa" role="button" @click.prevent.stop='modifySubmit'>确认修改 »</button></p>
       </div>     
     </div>
 
@@ -107,6 +109,10 @@ export default {
 
       'curArticle': null,
       'curParam': '',
+
+      'editorObj': null, // 编辑器对象 非内容
+
+
     };
   },
   computed: {
@@ -119,11 +125,15 @@ export default {
     editorHtml () {
       return this.aritcleContent? this.aritcleContent.newsContent: ''
     },
+    // 上传的图片
+    /*uploadSum () {
+
+    }*/
 
   },
   props: {
     subject: { // 必传 文章分类
-      type: String, // type
+      type: String, // type 必传 新闻中心
       default: '',
     },
     aritcleContent: { // 文章内容
@@ -133,19 +143,6 @@ export default {
   },
   // 监听路由变化 一旦变化 清空vuex中新闻的内容
   watch: {
-    $route (to, from) {
-      // 首次进入 无法监听路由变化
-      // console.log(to, '路由改变', from);
-      // this.curId = this.$route.params.id;
-     /* if (to.name == 'publishNew') {
-        // 进入了该页面
-        console.log('进入了该页面');
-        // this.curId = this.$route.params.id;
-        this.curId = this.$route.params.id;
-        this.getCurPage(this.curId);
-      }*/
-      // console.log(this.$route.params);
-    },
     curParam () {
       // console.log('参数变化');
     },
@@ -190,7 +187,7 @@ export default {
         });
 
     },
-    // 最终提交
+    // 最终提交 创建新的文章
     editorSubmit () {
       console.log(this.editorHtml);
       var _this = this;
@@ -210,6 +207,10 @@ export default {
           // console.log(error);
         });
       return;  
+    },
+    // 修改文章操作
+    modifySubmit () {
+      console.log(33333);
     }
   },
   created () {
@@ -217,9 +218,10 @@ export default {
     // console.log(this.modiNews,this.$route.params, this.subject); // 如果不存在 就是新增
     // console.log(this.$route.params);
     // 如果路由参数为空 就是新增 ，如果存在 就是编辑
-    console.log('editor');
+    
   },
   mounted () {
+    console.log('创建了ediotr');
     var _this = this;
     var editor = new E(this.$refs.editor);
 
@@ -237,7 +239,16 @@ export default {
     };
     editor.create();
 
+    // 如果_this.editorHtml有内容 即是修改页面 则回显，如果是新建文章 则啥都不显示
     // editor.txt.html(_this.editorHtml);
+
+    this.editorObj = editor;
+    console.log('创建了ediotr end');
+  },
+  // 注意生命周期
+  beforeUpdate () {
+    console.log('editor更新了');
+    this.editorObj.txt.html(this.editorHtml);
   }
 }
 </script>

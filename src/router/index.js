@@ -8,8 +8,11 @@ import Login from '@/components/Login/Login'
 import HelloWorld from '@/components/HelloWorld/HelloWorld' // @别名 src
 import ArticleLists from '@/components/ArticleLists/ArticleLists'
 
+import NewsLists from '@/components/NewsLists/NewsLists'
+import NewsPublish from '@/components/NewsPublish/NewsPublish'
+
 import NotFound from '@/components/NotFound/NotFound'
-// import Editor from '@/components/Editor/Editor'
+import WangEditor from '@/base/WangEditor/WangEditor'
 import Modify from '@/components/Modify/Modify'
 import PublishNew from '@/components/PublishNew/PublishNew'
 import ArticleDetail from '@/components/ArticleDetail/ArticleDetail' // 文章详情
@@ -73,13 +76,25 @@ const router = new Router({
           keepAlive: false
         },
         {
+          path: "newslists", // 新闻列表
+          component: NewsLists,
+          name: 'newslists', 
+          keepAlive: true
+        },
+        {
+          path: "newspublish", // 新增新闻
+          component: NewsPublish,
+          keepAlive: false,
+        },
+
+        {
           path: "error",
           component: Error,
           keepAlive: false
         },
       ],
       // 设置在当前一级路由为index的时的 二级路由
-      redirect:  {path: '/index/articlelists',/* query: {type: 1, page: 1}*/},
+      redirect:  {path: '/index/newslists',/* query: {type: 1, page: 1}*/},
     },
     {
       path: '/register',
@@ -90,6 +105,11 @@ const router = new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+    },
+    {
+      path: '/wangeditor',
+      name: 'WangEditor',
+      component: WangEditor,
     },
     /*{
       path: '/usercenter',
